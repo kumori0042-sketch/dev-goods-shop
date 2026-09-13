@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>버그없음 마켓</title>
+<meta name="description" content="개발자를 위한, 개발자가 만든 굿즈 쇼핑몰. 데모용 모의결제 프로젝트.">
+<meta name="theme-color" content="#3182F6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#">🐞 버그없음 마켓</a>
+      <button type="button" id="btn-open-cart" class="cart-btn">
+        🛒 장바구니 <span id="cart-count" class="cart-count" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">DEMO SHOP</p>
+      <h1>개발자를 위한,<br>개발자가 만든 굿즈</h1>
+      <p class="hero-sub">전부 실제로 담고 결제까지 눌러볼 수 있어요. <strong>실제 결제는 없는 포트폴리오용 데모</strong>입니다.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="product-grid" id="product-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">🐞 버그없음 마켓</div>
+      <div class="footer-links">
+        <a href="https://github.com/kumori0042-sketch/dev-goods-shop" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://portfolio-kuu-beta.vercel.app" target="_blank" rel="noopener">개발자KUU 포트폴리오</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== 장바구니 드로어 ===== -->
+  <div class="drawer-backdrop" id="cart-backdrop" hidden>
+    <aside class="drawer">
+      <div class="drawer-head">
+        <h2>장바구니</h2>
+        <button type="button" id="btn-close-cart" class="icon-btn" aria-label="닫기">✕</button>
+      </div>
+      <div class="drawer-body" id="cart-items"></div>
+      <div class="drawer-foot">
+        <div class="cart-total-row">
+          <span>합계</span>
+          <span id="cart-total" class="mono">0원</span>
+        </div>
+        <button type="button" id="btn-checkout" class="btn btn-primary btn-wide">주문하기</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== 체크아웃 모달 ===== -->
+  <div class="modal-backdrop" id="checkout-backdrop" hidden>
+    <div class="modal">
+      <button type="button" id="btn-close-checkout" class="icon-btn modal-close" aria-label="닫기">✕</button>
+      <div class="modal-scroll">
+        <p class="section-eyebrow">CHECKOUT (데모)</p>
+        <h2 class="section-title">주문 정보 입력</h2>
+        <p class="section-lede">실제로 배송되거나 결제되지 않는 데모 화면입니다. 아무 값이나 넣으셔도 됩니다.</p>
+        <div class="field">
+          <label class="k" for="ck-name">받는 사람</label>
+          <input type="text" id="ck-name" placeholder="홍길동">
+        </div>
+        <div class="field">
+          <label class="k" for="ck-address">배송지</label>
+          <input type="text" id="ck-address" placeholder="어디든 편하게">
+        </div>
+        <div class="order-summary" id="checkout-summary"></div>
+        <button type="button" id="btn-place-order" class="btn btn-primary btn-wide">₩0 결제하기 (모의)</button>
+        <p id="checkout-status" class="status-line" hidden></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 주문 완료 모달 ===== -->
+  <div class="modal-backdrop" id="done-backdrop" hidden>
+    <div class="modal modal-narrow">
+      <div class="modal-scroll" style="text-align:center;">
+        <div class="done-emoji">🎉</div>
+        <h2 class="section-title">주문이 접수됐어요!</h2>
+        <p class="section-lede" style="margin-left:auto; margin-right:auto;">물론 실제로 배송되진 않아요. 데모니까요.</p>
+        <p class="order-id mono" id="order-id"></p>
+        <button type="button" id="btn-done-close" class="btn btn-primary btn-wide">쇼핑 계속하기</button>
+      </div>
+    </div>
+  </div>
+
+<script src="products.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "dev-goods-shop",
+  "private": true,
+  "dependencies": {
+    "@vercel/blob": "^1.0.0"
+  }
+}
