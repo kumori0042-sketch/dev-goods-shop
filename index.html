@@ -13,6 +13,14 @@
 </head>
 <body>
 
+  <div class="top-ticker">
+    <div class="top-ticker-inner">
+      <span>실제 결제 없는 포트폴리오 데모</span>
+      <span>주문 접수는 실제로 동작함</span>
+      <span>소스코드 GitHub 공개</span>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#">🐞 버그없음 마켓</a>
@@ -23,14 +31,26 @@
   </header>
 
   <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">DEMO SHOP</p>
-      <h1>개발자를 위한,<br>개발자가 만든 굿즈</h1>
-      <p class="hero-sub">전부 실제로 담고 결제까지 눌러볼 수 있어요. <strong>실제 결제는 없는 포트폴리오용 데모</strong>입니다.</p>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Demo Shop · 2026</p>
+        <h1>개발자를 위한,<br>개발자가 만든 굿즈</h1>
+        <p class="hero-sub">전부 실제로 담고 결제까지 눌러볼 수 있어요. <strong>실제 결제는 없는 포트폴리오용 데모</strong>입니다.</p>
+      </div>
+      <div class="hero-mosaic" aria-hidden="true">
+        <div class="hero-tile">🧥<span class="hero-tile-label">Hoodie</span></div>
+        <div class="hero-tile">⌨️<span class="hero-tile-label">Keycap</span></div>
+        <div class="hero-tile">☕<span class="hero-tile-label">Mug</span></div>
+        <div class="hero-tile">👜<span class="hero-tile-label">Tote</span></div>
+      </div>
     </div>
   </section>
 
   <main class="wrap">
+    <div class="section-label-row">
+      <h2 class="section-label">ALL PRODUCTS</h2>
+      <span class="section-count mono" id="product-count"></span>
+    </div>
     <div class="product-grid" id="product-grid"></div>
   </main>
 

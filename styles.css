@@ -46,42 +46,70 @@ a{color:var(--accent-ink); font-weight:600; text-decoration:none;}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
 .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
 
+/* ---------- top ticker ---------- */
+.top-ticker{background:#12151A; color:#C9CFD8; overflow:hidden; white-space:nowrap;}
+.top-ticker-inner{display:flex; align-items:center; justify-content:center; gap:28px; padding:8px 24px; font-size:.72rem; font-weight:600; letter-spacing:.01em;}
+.top-ticker-inner span{white-space:nowrap;}
+.top-ticker-inner span:not(:last-child)::after{content:"·"; margin-left:28px; color:#4E5968;}
+
 /* ---------- header ---------- */
-.site-header{border-bottom:1px solid var(--line); background:var(--card); position:sticky; top:0; z-index:30;}
-.header-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
-.brand{font-family:"Gothic A1"; font-weight:800; font-size:1.05rem; color:var(--ink);}
+.site-header{background:#0B0D10; position:sticky; top:0; z-index:30;}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:18px 24px;}
+.brand{font-family:"Gothic A1"; font-weight:900; font-size:1rem; letter-spacing:.02em; color:#fff;}
 .cart-btn{
-  position:relative; font-family:"Gothic A1"; font-weight:700; font-size:.92rem; color:var(--ink);
-  background:var(--paper); border:1px solid var(--line); border-radius:var(--r-pill); padding:9px 16px; cursor:pointer;
+  position:relative; font-family:"Gothic A1"; font-weight:700; font-size:.84rem; color:#fff;
+  background:transparent; border:1px solid #333941; border-radius:var(--r-pill); padding:9px 18px; cursor:pointer;
+  letter-spacing:.01em; transition:border-color .15s;
 }
-.cart-btn:hover{border-color:var(--accent);}
+.cart-btn:hover{border-color:#fff;}
 .cart-count{
   display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; padding:0 5px;
   background:var(--accent); color:#fff; border-radius:var(--r-pill); font-size:.7rem; font-weight:700; margin-left:4px;
 }
 
 /* ---------- hero ---------- */
-.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
-.eyebrow{font-family:"Gothic A1"; font-size:.8rem; font-weight:700; color:var(--accent-ink); margin:0 0 14px;}
-.hero h1{font-family:"Gothic A1"; font-size:clamp(1.8rem,4.5vw,2.4rem); font-weight:900; letter-spacing:-.02em; line-height:1.35; margin:0 0 16px; color:var(--ink);}
-.hero-sub{font-size:1rem; color:var(--ink-soft); line-height:1.7; margin:0; max-width:40em;}
+.hero{background:#0B0D10; color:#fff; padding:72px 0 0; overflow:hidden;}
+.hero-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:end;}
+.eyebrow{font-family:"IBM Plex Mono"; font-size:.72rem; font-weight:600; color:#8B95A1; letter-spacing:.14em; margin:0 0 20px; text-transform:uppercase;}
+.hero h1{font-family:"Gothic A1"; font-size:clamp(2.1rem,5vw,3rem); font-weight:900; letter-spacing:-.03em; line-height:1.2; margin:0 0 20px; color:#fff;}
+.hero-sub{font-size:.96rem; color:#9AA3B0; line-height:1.75; margin:0 0 48px; max-width:36em;}
+.hero-mosaic{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; padding-bottom:0; align-self:stretch;}
+.hero-tile{
+  aspect-ratio:1/1; border-radius:2px; display:flex; align-items:center; justify-content:center;
+  font-size:2.6rem; position:relative; overflow:hidden;
+}
+.hero-tile:nth-child(1){background:#EBF2FF;}
+.hero-tile:nth-child(2){background:#1B1E24; font-size:2.2rem;}
+.hero-tile:nth-child(3){background:#1B1E24; font-size:2.2rem;}
+.hero-tile:nth-child(4){background:var(--accent); font-size:2.2rem;}
+.hero-tile-label{
+  position:absolute; left:10px; bottom:9px; font-family:"IBM Plex Mono"; font-size:.62rem; font-weight:600;
+  color:rgba(255,255,255,.55); letter-spacing:.04em; text-transform:uppercase;
+}
+.hero-tile:nth-child(1) .hero-tile-label{color:rgba(25,31,40,.45);}
+
+/* ---------- section label ---------- */
+.section-label-row{display:flex; align-items:baseline; justify-content:space-between; padding:56px 0 22px; border-bottom:1px solid var(--line); margin-bottom:0;}
+.section-label{font-family:"Gothic A1"; font-size:1.3rem; font-weight:900; letter-spacing:-.01em; color:var(--ink); margin:0;}
+.section-count{font-family:"IBM Plex Mono"; font-size:.78rem; color:var(--ink-faint);}
 
 /* ---------- product grid ---------- */
-.product-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px; padding:40px 0 80px;}
-.product-card{border:1px solid var(--line); border-radius:var(--r-lg); background:var(--card); box-shadow:var(--shadow-card); overflow:hidden; display:flex; flex-direction:column;}
-.product-media{aspect-ratio:1/1; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; font-size:3.4rem;}
-.product-body{padding:16px; display:flex; flex-direction:column; gap:6px; flex:1;}
-.product-tag{font-family:"Gothic A1"; font-size:.68rem; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border-radius:var(--r-pill); padding:3px 9px; align-self:flex-start;}
-.product-name{font-size:.95rem; font-weight:700; color:var(--ink); margin:4px 0 0; line-height:1.5;}
-.product-tagline{font-size:.82rem; color:var(--ink-faint); margin:0; flex:1;}
-.product-foot{display:flex; align-items:center; justify-content:space-between; margin-top:10px;}
-.product-price{font-family:"IBM Plex Mono"; font-weight:700; font-size:1rem; color:var(--ink);}
+.product-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); padding:38px 0 90px; margin-top:1px;}
+.product-card{background:var(--card); overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .15s;}
+.product-card:hover{box-shadow:inset 0 0 0 1px var(--ink); position:relative; z-index:1;}
+.product-media{aspect-ratio:1/1; background:var(--paper); display:flex; align-items:center; justify-content:center; font-size:3.6rem;}
+.product-body{padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; flex:1;}
+.product-tag{font-family:"IBM Plex Mono"; font-size:.64rem; font-weight:600; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; align-self:flex-start;}
+.product-name{font-size:.92rem; font-weight:700; color:var(--ink); margin:6px 0 0; line-height:1.5; letter-spacing:-.005em;}
+.product-tagline{font-size:.8rem; color:var(--ink-faint); margin:0; flex:1;}
+.product-foot{display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:14px; border-top:1px solid var(--line);}
+.product-price{font-family:"IBM Plex Mono"; font-weight:700; font-size:.98rem; color:var(--ink);}
 .btn-add{
-  font-family:"Gothic A1"; font-size:.8rem; font-weight:700; color:#fff; background:var(--accent);
-  border:none; border-radius:var(--r-sm); padding:7px 13px; cursor:pointer;
+  font-family:"Gothic A1"; font-size:.76rem; font-weight:700; color:var(--ink); background:transparent;
+  border:1px solid var(--ink); border-radius:var(--r-pill); padding:6px 14px; cursor:pointer; transition:background .15s,color .15s;
 }
-.btn-add:hover{filter:brightness(1.06);}
-.btn-add.added{background:var(--ink-faint);}
+.btn-add:hover{background:var(--ink); color:#fff;}
+.btn-add.added{background:var(--accent); border-color:var(--accent); color:#fff;}
 
 /* ---------- buttons (shared) ---------- */
 .btn{display:inline-flex; align-items:center; justify-content:center; gap:6px; font-family:"Gothic A1"; font-weight:700; font-size:.94rem; border-radius:var(--r-sm); padding:13px 20px; cursor:pointer; border:1px solid transparent;}
@@ -138,9 +166,9 @@ a{color:var(--accent-ink); font-weight:600; text-decoration:none;}
 .order-id{background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); padding:10px; margin:0 0 22px; font-size:.9rem;}
 
 /* ---------- footer ---------- */
-.site-footer{border-top:1px solid var(--line); padding:28px 0; margin-top:20px;}
+.site-footer{background:#0B0D10; padding:32px 0;}
 .footer-inner{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;}
-.footer-brand{font-family:"Gothic A1"; font-weight:800;}
+.footer-brand{font-family:"Gothic A1"; font-weight:800; color:#fff; letter-spacing:.01em;}
 .footer-links{display:flex; gap:18px;}
-.footer-links a{font-size:.86rem; color:var(--ink-soft); font-weight:600;}
-.footer-links a:hover{color:var(--accent-ink);}
+.footer-links a{font-size:.84rem; color:#9AA3B0; font-weight:600;}
+.footer-links a:hover{color:#fff;}

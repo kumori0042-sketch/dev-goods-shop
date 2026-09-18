@@ -23,6 +23,8 @@
   // ---------- 상품 목록 ----------
   const grid = document.getElementById("product-grid");
   function renderProducts() {
+    const countEl = document.getElementById("product-count");
+    if (countEl) countEl.textContent = PRODUCTS.length + "개";
     grid.innerHTML = PRODUCTS.map(
       (p) => `
       <div class="product-card">
