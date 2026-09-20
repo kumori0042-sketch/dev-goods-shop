@@ -72,8 +72,9 @@
     document.documentElement.lang = lang;
     if (lang !== "ko") {
       translateNode(document.documentElement);
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute("content", tr(meta.getAttribute("content")));
+      document.querySelectorAll('meta[name="description"], meta[property="og:title"], meta[property="og:description"]').forEach((meta) => {
+        meta.setAttribute("content", tr(meta.getAttribute("content")));
+      });
       new MutationObserver((records) => {
         for (const r of records) {
           if (r.type === "childList") r.addedNodes.forEach(translateNode);
@@ -85,7 +86,7 @@
         }
       }).observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
     }
-    const host = document.querySelector(".header-inner");
+    const host = document.querySelector("[data-lang-host], .header-inner");
     if (host) {
       const box = document.createElement("div");
       box.className = "lang-switch";
