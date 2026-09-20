@@ -17,25 +17,25 @@
     return PRODUCTS.find((p) => p.id === id);
   }
   function fmtWon(n) {
-    return n.toLocaleString("ko-KR") + "원";
+    return Lang.get() === "ko" ? n.toLocaleString("ko-KR") + "원" : "₩" + n.toLocaleString("en-US");
   }
 
   // ---------- 상품 목록 ----------
   const grid = document.getElementById("product-grid");
   function renderProducts() {
     const countEl = document.getElementById("product-count");
-    if (countEl) countEl.textContent = PRODUCTS.length + "개";
+    if (countEl) countEl.textContent = T("{0}개", PRODUCTS.length);
     grid.innerHTML = PRODUCTS.map(
       (p) => `
       <div class="product-card">
         <div class="product-media">${p.emoji}</div>
         <div class="product-body">
-          <span class="product-tag">${p.tag}</span>
-          <p class="product-name">${p.name}</p>
-          <p class="product-tagline">${p.tagline}</p>
+          <span class="product-tag">${T(p.tag)}</span>
+          <p class="product-name">${T(p.name)}</p>
+          <p class="product-tagline">${T(p.tagline)}</p>
           <div class="product-foot">
             <span class="product-price mono">${fmtWon(p.price)}</span>
-            <button type="button" class="btn-add" data-id="${p.id}">담기</button>
+            <button type="button" class="btn-add" data-id="${p.id}">${T("담기")}</button>
           </div>
         </div>
       </div>`
@@ -44,10 +44,10 @@
     grid.querySelectorAll(".btn-add").forEach((btn) => {
       btn.addEventListener("click", () => {
         addToCart(btn.dataset.id);
-        btn.textContent = "담김!";
+        btn.textContent = T("담김!");
         btn.classList.add("added");
         setTimeout(() => {
-          btn.textContent = "담기";
+          btn.textContent = T("담기");
           btn.classList.remove("added");
         }, 900);
       });
@@ -95,7 +95,7 @@
   function renderCartDrawer() {
     const lines = cartLines();
     if (lines.length === 0) {
-      cartItemsEl.innerHTML = `<div class="empty-cart">장바구니가 비어있어요.<br>마음에 드는 굿즈를 담아보세요.</div>`;
+      cartItemsEl.innerHTML = `<div class="empty-cart">${T("장바구니가 비어있어요.")}<br>${T("마음에 드는 굿즈를 담아보세요.")}</div>`;
     } else {
       cartItemsEl.innerHTML = lines
         .map(
@@ -103,13 +103,13 @@
         <div class="cart-item" data-id="${l.product.id}">
           <div class="cart-item-media">${l.product.emoji}</div>
           <div class="cart-item-info">
-            <p class="cart-item-name">${l.product.name}</p>
+            <p class="cart-item-name">${T(l.product.name)}</p>
             <span class="cart-item-price mono">${fmtWon(l.product.price)}</span>
             <div class="qty-row">
               <button type="button" class="qty-btn" data-action="dec">−</button>
               <span class="qty-val">${l.qty}</span>
               <button type="button" class="qty-btn" data-action="inc">+</button>
-              <button type="button" class="remove-btn" data-action="remove">삭제</button>
+              <button type="button" class="remove-btn" data-action="remove">${T("삭제")}</button>
             </div>
           </div>
         </div>`
@@ -146,9 +146,9 @@
     if (lines.length === 0) return;
     summaryEl.innerHTML =
       lines
-        .map((l) => `<div class="row"><span>${l.product.name} × ${l.qty}</span><span class="mono">${fmtWon(l.product.price * l.qty)}</span></div>`)
-        .join("") + `<div class="row total"><span>합계</span><span class="mono">${fmtWon(cartTotal())}</span></div>`;
-    document.getElementById("btn-place-order").textContent = `${fmtWon(cartTotal())} 결제하기 (모의)`;
+        .map((l) => `<div class="row"><span>${T(l.product.name)} × ${l.qty}</span><span class="mono">${fmtWon(l.product.price * l.qty)}</span></div>`)
+        .join("") + `<div class="row total"><span>${T("합계")}</span><span class="mono">${fmtWon(cartTotal())}</span></div>`;
+    document.getElementById("btn-place-order").textContent = T("{0} 결제하기 (모의)", fmtWon(cartTotal()));
     cartBackdrop.hidden = true;
     checkoutBackdrop.hidden = false;
   });
@@ -164,7 +164,7 @@
     const lines = cartLines();
 
     if (!name || !address) {
-      statusEl.textContent = "받는 사람과 배송지를 입력해주세요.";
+      statusEl.textContent = T("받는 사람과 배송지를 입력해주세요.");
       statusEl.hidden = false;
       statusEl.classList.add("error");
       return;
@@ -173,7 +173,7 @@
     const btn = document.getElementById("btn-place-order");
     btn.disabled = true;
     const original = btn.textContent;
-    btn.textContent = "처리 중...";
+    btn.textContent = T("처리 중...");
 
     try {
       const res = await fetch("/api/orders", {
@@ -192,10 +192,10 @@
       saveCart({});
       renderCartBadge();
       checkoutBackdrop.hidden = true;
-      document.getElementById("order-id").textContent = "주문번호 " + data.orderId;
+      document.getElementById("order-id").textContent = T("주문번호 {0}", data.orderId);
       document.getElementById("done-backdrop").hidden = false;
     } catch (err) {
-      statusEl.textContent = "주문 처리 중 문제가 생겼어요: " + err.message;
+      statusEl.textContent = T("주문 처리 중 문제가 생겼어요: {0}", T(err.message));
       statusEl.hidden = false;
       statusEl.classList.add("error");
     } finally {

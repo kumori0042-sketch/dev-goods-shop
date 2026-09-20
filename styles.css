@@ -180,3 +180,14 @@ body{font-family:var(--font-ui); letter-spacing:-.011em; font-kerning:normal; te
 :lang(en){word-break:normal; letter-spacing:-.005em;}
 h1,h2,h3{text-wrap:balance;}
 p,li{text-wrap:pretty;}
+
+
+/* ---------- 언어 전환 (i18n.js가 헤더에 넣는다) ---------- */
+.header-inner{gap:12px;}
+.lang-switch{display:inline-flex; gap:2px; padding:3px; border:1px solid #333941; border-radius:999px; margin-left:auto; flex-shrink:0; order:2;}
+.cart-btn{order:3;}
+.lang-switch button{font:inherit; font-size:.78rem; font-weight:700; color:#C9CFD8; background:none; border:0; border-radius:999px; padding:4px 9px; cursor:pointer; min-height:28px;}
+.lang-switch button.active{background:var(--accent); color:#fff;}
+.lang-switch button:focus-visible{outline:2px solid #fff; outline-offset:1px;}
+.brand,.cart-btn{white-space:nowrap;}
+@media (max-width: 520px){ .header-inner{padding:12px 14px; gap:6px;} .brand{font-size:.86rem;} .cart-btn{padding:7px 10px; font-size:.8rem;} .lang-switch button{padding:3px 6px; font-size:.72rem;} }
