@@ -4,6 +4,10 @@
 
 **🔗 Live: [dev-goods-shop.vercel.app](https://dev-goods-shop.vercel.app)**
 
+**日本語**: 開発者による、開発者のためのグッズショップ。カート・チェックアウトまで実際に操作でき、決済は行われませんが注文の受付自体はサーバーレス関数で実際に動作し、注文番号が発行されます。ja/en 対応。
+
+**English**: A goods shop by developers, for developers. You can really add items, go through checkout, and get an order number — order intake works via a serverless function, but no payment is ever charged. Available in Japanese and English too.
+
 ## 기능
 
 - 상품 목록 (`products.js`에 객체만 추가하면 자동 반영)
